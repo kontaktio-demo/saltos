@@ -1,0 +1,12 @@
+[
+  {
+    "category": "Bilety",
+    "question": "Czy muszę kupić bilet online?",
+    "answer": "Nie musisz, ale rezerwacja online gwarantuje miejsce w wybranym slocie."
+  },
+  {
+    "category": "Bezpieczeństwo",
+    "question": "Czy w parku obowiązują skarpetki antypoślizgowe?",
+    "answer": "Tak — skarpetki antypoślizgowe są obowiązkowe. Można je kupić w recepcji."
+  }
+]

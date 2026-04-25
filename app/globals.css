@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+ * Design tokens (CSS variables) — consumed by Tailwind theme tokens.
+ * ------------------------------------------------------------------ */
+@layer base {
+  :root {
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+
+    /* SALTOS brand palette as RGB triplets (Tailwind-friendly). */
+    --color-brand: 243 146 0;   /* #F39200 — pomarańcz */
+    --color-ink: 30 42 92;      /* #1E2A5C — granat */
+    --color-accent: 47 168 79;  /* #2FA84F — zieleń */
+    --color-teal: 31 169 168;   /* #1FA9A8 — turkus */
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background-color: theme('colors.ink.DEFAULT');
+    color: white;
+  }
+}
