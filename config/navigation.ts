@@ -8,14 +8,17 @@ export type NavItem = {
   description?: string;
 };
 
+/**
+ * Górna nawigacja — układ jak na saltos.pl Srebrzyńska.
+ */
 export const mainNav: NavItem[] = [
-  { label: 'Zajęcia', href: '/zajecia' },
-  { label: 'Cennik', href: '/cennik' },
-  { label: 'Rezerwacje', href: '/rezerwacje' },
-  { label: 'Urodziny', href: '/urodziny' },
-  { label: 'Galeria', href: '/galeria' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'Kontakt', href: '/kontakt' },
+  { label: 'pixel games', href: '/zajecia/pixel-games-session' },
+  { label: 'urodziny', href: '/urodziny' },
+  { label: 'szkoły', href: '/szkoly' },
+  { label: 'zajęcia', href: '/zajecia' },
+  { label: 'karnety', href: '/cennik#karnety' },
+  { label: 'skakanie', href: '/zajecia/free-jump-60' },
+  { label: 'cennik', href: '/cennik' },
 ];
 
 export const footerNav: { title: string; items: NavItem[] }[] = [
@@ -25,6 +28,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: 'Zajęcia', href: '/zajecia' },
       { label: 'Cennik', href: '/cennik' },
       { label: 'Galeria', href: '/galeria' },
+      { label: 'Rezerwacje', href: '/rezerwacje' },
     ],
   },
   {
@@ -33,6 +37,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: 'Urodziny', href: '/urodziny' },
       { label: 'Szkoły', href: '/szkoly' },
       { label: 'Firmy', href: '/firmy' },
+      { label: 'Pixel Games', href: '/zajecia/pixel-games-session' },
     ],
   },
   {
