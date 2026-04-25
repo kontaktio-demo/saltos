@@ -1,6 +1,7 @@
 import type Stripe from 'stripe';
 import { stripe } from './server';
 import { createAdminClient } from '@/lib/supabase/admin';
+import type { Json } from '@/lib/supabase/types';
 
 /**
  * Verify and parse an incoming Stripe webhook request body.
@@ -49,8 +50,8 @@ export async function handleStripeEvent(event: Stripe.Event): Promise<void> {
   await supabase.from('stripe_events').insert({
     id: event.id,
     type: event.type,
-    payload: event as unknown as Record<string, unknown>,
-  });
+    payload: event as unknown as Json,
+  } as never);
 }
 
 async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
@@ -65,7 +66,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
       stripe_checkout_session_id: session.id,
       stripe_payment_intent_id:
         typeof session.payment_intent === 'string' ? session.payment_intent : null,
-    })
+    } as never)
     .eq('id', reservationId);
 }
 
@@ -74,5 +75,8 @@ async function handleCheckoutExpired(session: Stripe.Checkout.Session) {
   if (!reservationId) return;
 
   const supabase = createAdminClient();
-  await supabase.from('reservations').update({ status: 'cancelled' }).eq('id', reservationId);
+  await supabase
+    .from('reservations')
+    .update({ status: 'cancelled' } as never)
+    .eq('id', reservationId);
 }

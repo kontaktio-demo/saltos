@@ -7,7 +7,7 @@ export async function createReservation(input: ReservationInsert) {
   const supabase = createClient();
   const { data, error } = await supabase
     .from('reservations')
-    .insert(input)
+    .insert(input as never)
     .select()
     .single();
   if (error) throw error;
@@ -21,7 +21,7 @@ export async function updateReservationStatus(
   const supabase = createClient();
   const { data, error } = await supabase
     .from('reservations')
-    .update({ status })
+    .update({ status } as never)
     .eq('id', id)
     .select()
     .single();

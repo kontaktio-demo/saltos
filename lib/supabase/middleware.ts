@@ -49,11 +49,11 @@ export async function updateSession(request: NextRequest): Promise<NextResponse>
     }
 
     // Check admin role from `profiles.role` (see DB schema).
-    const { data: profile } = await supabase
+    const { data: profile } = (await supabase
       .from('profiles')
       .select('role')
       .eq('id', user.id)
-      .single();
+      .single()) as { data: { role: 'user' | 'staff' | 'admin' } | null };
 
     if (profile?.role !== 'admin' && profile?.role !== 'staff') {
       const url = request.nextUrl.clone();

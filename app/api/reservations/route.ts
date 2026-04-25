@@ -45,7 +45,7 @@ export async function POST(req: Request) {
       p_guest_email: input.guestEmail,
       p_guest_phone: input.guestPhone || null,
       p_notes: input.notes ?? null,
-    });
+    } as never);
 
     if (error) {
       // Translate well-known SQL exceptions to friendly messages.

@@ -8,6 +8,6 @@ if (!process.env.STRIPE_SECRET_KEY) {
 
 /** Server-side Stripe SDK singleton. */
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? 'sk_test_placeholder', {
-  apiVersion: '2024-09-30.acacia',
+  apiVersion: '2025-02-24.acacia',
   typescript: true,
 });

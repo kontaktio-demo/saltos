@@ -23,9 +23,10 @@ export async function getAdminDashboardStats() {
       .gte('created_at', new Date(Date.now() - 30 * 24 * 3600 * 1000).toISOString()),
   ]);
 
+  const revenueRows = (revenue ?? []) as Array<{ total_grosze: number | null }>;
+
   return {
     reservationsToday: today?.length ?? 0,
-    revenue30dGrosze:
-      revenue?.reduce((sum, r) => sum + (r.total_grosze ?? 0), 0) ?? 0,
+    revenue30dGrosze: revenueRows.reduce((sum, r) => sum + (r.total_grosze ?? 0), 0),
   };
 }

@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       subject: input.subject || null,
       message: input.message,
       status: 'new',
-    });
+    } as never);
     if (error) throw error;
     return NextResponse.json({ ok: true });
   } catch (err) {
