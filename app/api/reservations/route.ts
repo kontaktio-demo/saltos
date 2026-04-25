@@ -29,7 +29,7 @@ export async function POST(req: Request) {
 
   try {
     const input = reservationSchema.parse(await req.json());
-    const supabase = createClient();
+    const supabase = await createClient();
 
     // Resolve current user (if logged in) — guests are also allowed.
     const {

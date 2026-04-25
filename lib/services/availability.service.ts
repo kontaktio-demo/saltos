@@ -9,7 +9,7 @@ type ClassRow = Database['public']['Tables']['classes']['Row'];
  * Sums confirmed reservations and subtracts from session capacity.
  */
 export async function getSessionAvailability(sessionId: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   // Fetch session and parent class capacity in two queries (avoids depending on
   // generated relationship types which aren't present in the placeholder schema).

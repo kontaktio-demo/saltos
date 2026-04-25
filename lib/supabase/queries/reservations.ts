@@ -1,7 +1,7 @@
 import { createClient } from '../server';
 
 export async function getReservationsByUser(userId: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('reservations')
     .select('*, session:class_sessions(*, class:classes(*))')
@@ -12,7 +12,7 @@ export async function getReservationsByUser(userId: string) {
 }
 
 export async function getReservationById(id: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('reservations')
     .select('*, session:class_sessions(*, class:classes(*))')

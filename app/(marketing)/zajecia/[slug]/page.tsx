@@ -17,10 +17,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   try {
-    const c = await getClassBySlug(params.slug);
+    const { slug } = await params;
+    const c = await getClassBySlug(slug);
     if (!c) return { title: 'Zajęcia' };
     return { title: c.title, description: c.short_description ?? undefined };
   } catch {
@@ -28,8 +29,13 @@ export async function generateMetadata({
   }
 }
 
-export default async function ClassDetailPage({ params }: { params: { slug: string } }) {
-  const c = await getClassBySlug(params.slug).catch(() => null);
+export default async function ClassDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const c = await getClassBySlug(slug).catch(() => null);
   if (!c) notFound();
 
   return (

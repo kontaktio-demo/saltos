@@ -3,7 +3,7 @@ import { createClient } from '../server';
 /** Read-side queries for `classes` and related sessions. */
 
 export async function getClasses(opts: { onlyActive?: boolean } = {}) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const query = supabase.from('classes').select('*').order('title');
   if (opts.onlyActive ?? true) query.eq('is_active', true);
   const { data, error } = await query;
@@ -12,7 +12,7 @@ export async function getClasses(opts: { onlyActive?: boolean } = {}) {
 }
 
 export async function getClassBySlug(slug: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('classes')
     .select('*')
@@ -23,7 +23,7 @@ export async function getClassBySlug(slug: string) {
 }
 
 export async function getUpcomingSessions(classId: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('class_sessions')
     .select('*')

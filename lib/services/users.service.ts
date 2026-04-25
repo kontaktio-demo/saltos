@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server';
 
 /** Returns the currently authenticated user (or null). */
 export async function getCurrentUser() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -11,7 +11,7 @@ export async function getCurrentUser() {
 
 /** Returns the user's profile (role, full_name, phone). */
 export async function getCurrentProfile() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();

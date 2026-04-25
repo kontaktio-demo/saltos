@@ -8,17 +8,18 @@ const nextConfig = {
       { protocol: 'https', hostname: '*.supabase.co' },
     ],
   },
-  // Allow importing 3D model files (.glb / .gltf) directly via webpack asset modules.
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.(glb|gltf|hdr|ktx2)$/,
-      type: 'asset/resource',
-    });
-    return config;
-  },
-  experimental: {
-    // Required for Three.js / R3F to be properly bundled in server components.
-    serverComponentsExternalPackages: ['three'],
+  // Three.js / R3F should be treated as external on the server
+  // (moved out of experimental in Next 16).
+  serverExternalPackages: ['three'],
+  // Turbopack (default in Next 16) — register .glb/.gltf/.hdr/.ktx2 as asset
+  // modules so they can be imported from `public/` in client components.
+  turbopack: {
+    rules: {
+      '*.glb': { loaders: ['file-loader'], as: '*.js' },
+      '*.gltf': { loaders: ['file-loader'], as: '*.js' },
+      '*.hdr': { loaders: ['file-loader'], as: '*.js' },
+      '*.ktx2': { loaders: ['file-loader'], as: '*.js' },
+    },
   },
 };
 

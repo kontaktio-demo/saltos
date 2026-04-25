@@ -4,7 +4,7 @@ import type { Database } from '../types';
 type ReservationInsert = Database['public']['Tables']['reservations']['Insert'];
 
 export async function createReservation(input: ReservationInsert) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('reservations')
     .insert(input as never)
@@ -18,7 +18,7 @@ export async function updateReservationStatus(
   id: string,
   status: Database['public']['Enums']['reservation_status'],
 ) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('reservations')
     .update({ status } as never)

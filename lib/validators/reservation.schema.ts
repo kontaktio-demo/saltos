@@ -13,7 +13,7 @@ export const reservationSchema = z.object({
     .or(z.literal('')),
   notes: z.string().max(500).optional(),
   acceptTerms: z.literal(true, {
-    errorMap: () => ({ message: 'Musisz zaakceptować regulamin' }),
+    message: 'Musisz zaakceptować regulamin',
   }),
 });
 

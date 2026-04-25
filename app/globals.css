@@ -1,22 +1,50 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 /* ------------------------------------------------------------------
- * Design tokens (CSS variables) — consumed by Tailwind theme tokens.
+ * Tailwind v4 — design tokens via CSS-first @theme.
+ * Brand: pomarańcz #F39200, granat #1E2A5C, zieleń #2FA84F, turkus #1FA9A8.
  * ------------------------------------------------------------------ */
-@layer base {
-  :root {
-    --font-sans: 'Inter', system-ui, sans-serif;
-    --font-display: 'Space Grotesk', system-ui, sans-serif;
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
 
-    /* SALTOS brand palette as RGB triplets (Tailwind-friendly). */
-    --color-brand: 243 146 0;   /* #F39200 — pomarańcz */
-    --color-ink: 30 42 92;      /* #1E2A5C — granat */
-    --color-accent: 47 168 79;  /* #2FA84F — zieleń */
-    --color-teal: 31 169 168;   /* #1FA9A8 — turkus */
+  /* Brand — pomarańcz (główne tło, energia, ruch) */
+  --color-brand-DEFAULT: #f39200;
+  --color-brand-dark: #d97e00;
+  --color-brand-light: #ffb13d;
+
+  /* Ink — granat (pasek kontaktowy, footer, panel admina) */
+  --color-ink-DEFAULT: #1e2a5c;
+  --color-ink-muted: #141b40;
+  --color-ink-light: #2c3a75;
+
+  /* Accent — zieleń z logo */
+  --color-accent-DEFAULT: #2fa84f;
+  --color-accent-dark: #1f8038;
+  --color-accent-light: #5cc176;
+
+  /* Teal — turkus z logo */
+  --color-teal-DEFAULT: #1fa9a8;
+  --color-teal-dark: #16807f;
+  --color-teal-light: #4fc2c1;
+
+  --container-2xl: 1440px;
+
+  --animate-fade-up: fade-up 0.6s ease-out forwards;
+
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
+}
 
+@layer base {
   html {
     scroll-behavior: smooth;
   }
@@ -26,7 +54,24 @@
   }
 
   ::selection {
-    background-color: theme('colors.ink.DEFAULT');
+    background-color: var(--color-ink-DEFAULT);
     color: white;
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1440px;
+  padding-inline: 1rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 2rem;
+  }
+  @media (min-width: 1280px) {
+    padding-inline: 3rem;
   }
 }

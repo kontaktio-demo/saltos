@@ -16,7 +16,6 @@ export async function sendEmail({
   from = 'Saltos <noreply@saltos.example.com>',
 }: SendEmailArgs): Promise<void> {
   if (!process.env.RESEND_API_KEY) {
-    // eslint-disable-next-line no-console
     console.warn('RESEND_API_KEY not set — email not sent', { to, subject });
     return;
   }

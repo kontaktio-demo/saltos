@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 import { updateSession } from '@/lib/supabase/middleware';
 
 /**
- * Root middleware:
+ * Root proxy (Next 16 — formerly `middleware.ts`):
  *  - Refreshes the Supabase auth session cookie on every request.
  *  - Protects `/admin/*` (admin role required) and `/konto/*` (any authenticated user).
  *
@@ -10,7 +10,7 @@ import { updateSession } from '@/lib/supabase/middleware';
  * (so it can use the shared SSR Supabase client). This file only wires
  * the matcher and delegates.
  */
-export async function middleware(request: NextRequest): Promise<NextResponse> {
+export async function proxy(request: NextRequest): Promise<NextResponse> {
   return updateSession(request);
 }
 

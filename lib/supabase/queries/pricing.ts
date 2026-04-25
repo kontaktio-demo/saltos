@@ -1,7 +1,7 @@
 import { createClient } from '../server';
 
 export async function getPricingPlans() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('pricing_plans')
     .select('*')

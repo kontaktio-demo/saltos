@@ -7,7 +7,7 @@ import { createClient } from '@/lib/supabase/server';
  *  - top classes by occupancy
  */
 export async function getAdminDashboardStats() {
-  const supabase = createClient();
+  const supabase = await createClient();
   const todayStart = new Date();
   todayStart.setHours(0, 0, 0, 0);
 

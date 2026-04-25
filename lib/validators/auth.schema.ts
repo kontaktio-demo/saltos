@@ -12,7 +12,7 @@ export const registerSchema = z
     password: z.string().min(8, 'Hasło musi mieć min. 8 znaków'),
     confirmPassword: z.string().min(8),
     acceptTerms: z.literal(true, {
-      errorMap: () => ({ message: 'Musisz zaakceptować regulamin' }),
+      message: 'Musisz zaakceptować regulamin',
     }),
   })
   .refine((d) => d.password === d.confirmPassword, {

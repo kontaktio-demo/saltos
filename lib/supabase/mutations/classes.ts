@@ -5,7 +5,7 @@ type ClassInsert = Database['public']['Tables']['classes']['Insert'];
 type ClassUpdate = Database['public']['Tables']['classes']['Update'];
 
 export async function createClass(input: ClassInsert) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('classes')
     .insert(input as never)
@@ -16,7 +16,7 @@ export async function createClass(input: ClassInsert) {
 }
 
 export async function updateClass(id: string, patch: ClassUpdate) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from('classes')
     .update(patch as never)
@@ -28,7 +28,7 @@ export async function updateClass(id: string, patch: ClassUpdate) {
 }
 
 export async function deleteClass(id: string) {
-  const supabase = createClient();
+  const supabase = await createClient();
   const { error } = await supabase.from('classes').delete().eq('id', id);
   if (error) throw error;
 }

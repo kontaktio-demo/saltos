@@ -5,9 +5,10 @@ import type { Database } from './types';
 /**
  * Supabase client for **Server Components / Server Actions / Route Handlers**.
  * Reads & writes auth cookies through Next's `cookies()` helper.
+ * In Next 15+ `cookies()` is async, so this function returns a Promise.
  */
-export function createClient() {
-  const cookieStore = cookies();
+export async function createClient() {
+  const cookieStore = await cookies();
 
   return createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
